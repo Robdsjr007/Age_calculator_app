@@ -1,0 +1,14 @@
+@use '../styles/mixins'
+@use '../styles/variables'
+
+.labelContainer
+    @include mixins.flexContent(flex, flex-end, flex-start)
+    flex-direction: column
+    
+
+    .input
+        @include mixins.widthAndHeight(20%, 10%)
+
+
+    
+    
