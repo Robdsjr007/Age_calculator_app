@@ -2,13 +2,20 @@
 @use '../styles/variables'
 
 .labelContainer
-    @include mixins.flexContent(flex, flex-end, flex-start)
+    @include mixins.flexContent(flex, center, flex-start)
+    height: max-content
     flex-direction: column
-    
 
-    .input
-        @include mixins.widthAndHeight(20%, 10%)
+    & label
+        text-transform: uppercase
 
+    & .input
+        margin-block: 5px
+        padding-block: 5px
+        padding-inline: 10px
+        @include mixins.widthAndHeight(125px, 50%)
+        border: 1px solid variables.$neutral-off-white
+        border-radius: 5px
 
-    
-    
+        &:focus
+            outline: none

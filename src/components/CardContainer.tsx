@@ -6,6 +6,7 @@ const CardContainer = () => {
   return (
     <article className={styles.card}>
       <FormCard>
+        <div className={styles.line}></div>
         <button type='submit'>enviar</button>
       </FormCard>
     </article>

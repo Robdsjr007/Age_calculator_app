@@ -1,32 +1,34 @@
-import React, { ChangeEventHandler, ReactElement, ReactNode, useState } from 'react'
-
+import React, { ChangeEvent, FormEventHandler, ReactNode, useState } from 'react';
 import InputDate from './InputDate';
+
+import styles from './FormCard.module.sass'
 
 type Props = {
     children: ReactNode,
-    event: ChangeEventHandler,
-    state: Number | null
 }
 
 const FormCard = ({ children }: Props): React.ReactElement => {
-    const [day, setDay] = useState<null | Number>();
-    const [month, setMonth] = useState<null | Number>();
-    const [year, setYear] = useState<null | Number>();
+    const [day, setDay] = useState<number | undefined>(undefined);
+    const [month, setMonth] = useState<number | undefined>(undefined);
+    const [year, setYear] = useState<number | undefined>(undefined);
 
-    const countTimeThatHasPassed = () => {
+    const countTimeThatHasPassed: FormEventHandler = (e: React.FormEvent): void => {
+        e.preventDefault();
         alert("Funfa");
     };
 
     return (
         <form onSubmit={countTimeThatHasPassed}>
-            <div className="inputContainer">
-                <InputDate label={"Day"} placeholder={"DD"} state={day} event={(e) => setDay(e.target.value)} />
-                <InputDate label={"Month"} placeholder={"MM"} state={month} event={(e) => setMonth(e.target.value)}/>
-                <InputDate label={"Year"} placeholder={"YYYY"} state={year} event={(e) => setYear(e.target.value)}/>
+            <div className={styles.inputContainer}>
+                <InputDate label={"Day"} placeholder={"DD"} state={day} event={(e: ChangeEvent<HTMLInputElement>) => setDay(Number(e.target.value))} />
+                <InputDate label={"Month"} placeholder={"MM"} state={month} event={(e: ChangeEvent<HTMLInputElement>) => setMonth(Number(e.target.value))} />
+                <InputDate label={"Year"} placeholder={"YYYY"} state={year} event={(e: ChangeEvent<HTMLInputElement>) => setYear(Number(e.target.value))} />
             </div>
-            {children}
+            <div className={styles.buttonContainer}>
+                {children}
+            </div>
         </form>
-    )
+    );
 }
 
-export default FormCard
+export default FormCard;

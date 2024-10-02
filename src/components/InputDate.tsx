@@ -1,22 +1,21 @@
 import styles from './InputDate.module.sass'
 
-import {ChangeEventHandler, ReactElement} from 'react'
+import { ChangeEventHandler, ReactElement } from 'react'
 
 type Props = {
-    placeholder: string,
-    label: string,
-    event: ChangeEventHandler,
-    state: Number | null
+  placeholder: string,
+  label: string,
+  event: ChangeEventHandler,
+  state: number | undefined
 }
 
-const InputDate = ({label, placeholder, event, state}: Props): ReactElement => {
+const InputDate = ({ label, placeholder, event, state }: Props): ReactElement => {
   return (
-    <>
-    <label className={styles.labelContainer}>
-        {label}
-        <input onChange={event} value={state} className={styles.input} type="number" placeholder={placeholder} required/>
-    </label>
-    </>
+    <div className={styles.labelContainer}>
+      <label htmlFor={label} style={state == 0 ? {color: 'red'} : {}}>{label}</label>
+        <input id={label} onChange={event} value={state} style={state == 0 ? {borderColor: 'red', color: 'red'} : {}} className={styles.input} type="number" placeholder={placeholder} required />
+        {state == 0 && <p style={state == 0 ? {color: 'red'} : {}}>This field is required</p>}
+    </div>
   )
 }
 
